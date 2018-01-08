@@ -1,0 +1,2 @@
+<%@ page import="com.jint.Ticket, com.jint.Attachment" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
