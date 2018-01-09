@@ -35,6 +35,10 @@ public class TicketServlet extends HttpServlet
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
+    	if (req.getSession().getAttribute("username") == null) {
+			resp.sendRedirect("login");
+			return;
+		}
         String action = req.getParameter("action");
         if(action == null)
             action = "list";
@@ -60,6 +64,10 @@ public class TicketServlet extends HttpServlet
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
+    	if (req.getSession().getAttribute("username") == null) {
+			resp.sendRedirect("login");
+			return;
+		}
         String action = req.getParameter("action");
         if(action == null)
             action = "list";
@@ -142,7 +150,7 @@ public class TicketServlet extends HttpServlet
             throws ServletException, IOException
     {
         Ticket ticket = new Ticket();
-        ticket.setCustomerName(req.getParameter("customerName"));
+        ticket.setCustomerName((String) req.getSession().getAttribute("username"));
         ticket.setSubject(req.getParameter("subject"));
         ticket.setBody(req.getParameter("body"));
 
